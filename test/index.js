@@ -137,6 +137,19 @@ test('micromark-extension-gfm-autolink-literal', async function (t) {
   )
 
   await t.test(
+    'should *not* support activitypub identifiers (email)',
+    async function () {
+      assert.equal(
+        micromark('@example@example.com', {
+          extensions: [gfmAutolinkLiteral()],
+          htmlExtensions: [gfmAutolinkLiteralHtml()]
+        }),
+        '<p>@example@example.com</p>'
+      )
+    }
+  )
+
+  await t.test(
     'should *not* support non-ascii characters in a domain (email)',
     async function () {
       assert.equal(
