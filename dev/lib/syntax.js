@@ -112,6 +112,7 @@ function tokenizeEmailAutolink(effects, ok, nok) {
    */
   function start(code) {
     if (
+      self.previous === codes.atSign ||
       !gfmAtext(code) ||
       !previousEmail.call(self, self.previous) ||
       previousUnbalanced(self.events)
